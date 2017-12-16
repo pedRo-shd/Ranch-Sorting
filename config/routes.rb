@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   namespace :backoffice do
     resources :send_mail, only: [:edit, :create]
     resources :categories, except: [:show, :destroy]
+    resources :competitions
+    resources :competitors, except: [:show]
     resources :admins, except: [:show]
     resources :diagrams, only: [:index]
     get 'dashboard', to: 'dashboard#index'

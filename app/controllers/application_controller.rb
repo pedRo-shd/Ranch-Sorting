@@ -1,10 +1,16 @@
 class ApplicationController < ActionController::Base
 	before_action :store_current_location, :unless => :devise_controller?
 
+  HaveCompetitors = Class.new(StandardError)
+	NotHaveCompetition = Class.new(StandardError)
+
+
 # Rodar Pundit em todas minhas aplicações
 	include Pundit
 
 	rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+	rescue_from HaveCompetitors, with: :have_competitors
+	rescue_from NotHaveCompetition, with: :not_have_competition
 
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
@@ -12,6 +18,16 @@ class ApplicationController < ActionController::Base
 
   # Set Layout
   layout :layout_by_resource
+
+	def have_competitors
+	  flash[:alert] = 'Não é possível deletar, há competidores cadastrados nesta competição!'
+		redirect_to backoffice_competitions_path
+	end
+
+	def not_have_competition
+		flash[:alert] = 'Não foi possível prosseguir, entre na competição que deseja cadastrar os competidores'
+		redirect_to backoffice_competitions_path
+	end
 
 	protected
 

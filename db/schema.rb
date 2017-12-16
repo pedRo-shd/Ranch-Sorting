@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170914004433) do
+ActiveRecord::Schema.define(version: 20171216190326) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -86,6 +86,26 @@ ActiveRecord::Schema.define(version: 20170914004433) do
 
   add_index "comments", ["ad_id"], name: "index_comments_on_ad_id", using: :btree
   add_index "comments", ["member_id"], name: "index_comments_on_member_id", using: :btree
+
+  create_table "competitions", force: :cascade do |t|
+    t.string   "title"
+    t.decimal  "price"
+    t.string   "city"
+    t.string   "state"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "competitors", force: :cascade do |t|
+    t.string   "name"
+    t.boolean  "paid"
+    t.integer  "number_races"
+    t.integer  "competition_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "competitors", ["competition_id"], name: "index_competitors_on_competition_id", using: :btree
 
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string   "slug",                      null: false
@@ -166,5 +186,6 @@ ActiveRecord::Schema.define(version: 20170914004433) do
   add_foreign_key "ads", "members"
   add_foreign_key "comments", "ads"
   add_foreign_key "comments", "members"
+  add_foreign_key "competitors", "competitions"
   add_foreign_key "profile_members", "members"
 end

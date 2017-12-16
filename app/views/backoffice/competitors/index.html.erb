@@ -1,0 +1,54 @@
+    <h1 class="page-header">Competições</h1>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Listando Competições
+            <%= link_to  new_backoffice_competitor_path,
+              class: "btn btn-success pull-right", style:"margin-top: -7px" do %>
+                <i class="fa fa-plus" style="padding-right: 7px"></i>Adicionar Competidor
+            <% end %>
+        </div>
+
+
+    <div class="panel-body">
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>Número</th>
+                        <th>Nome</th>
+                        <th>Inscrição Paga?</th>
+                        <th>Quantidade de Passadas</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% @competitors.each do |competitor| %>
+                      <tr>
+
+                          <td><%= competitor.id %></td>
+                          <td><%= competitor.name %></td>
+                          <td><%= competitor.paid == true ? 'Sim' : 'Não' %></td>
+                          <td><%= competitor.number_races %></td>
+                          <td style="width: 200px" align="center">
+
+                          <%= link_to edit_backoffice_competitor_path(competitor),
+                            class: "btn btn-primary btn-circle" do %>
+                              <i class="fa fa-edit"></i>
+                          <% end %>
+
+                          <%= link_to backoffice_competitor_path(competitor),
+                              method: :delete, class: "btn btn-danger btn-circle",
+                              data: {confirm: 'Tem certeza que deseja deletar este competidor?'} do %>
+                              <i class="fa fa-minus"></i>
+                          <% end %>
+                          </td>
+                      </tr>
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+</div>

@@ -1,0 +1,20 @@
+<h1 class="page-header">Competição</h1>
+
+  <div class="caption-full">
+    <br>
+    <%= link_to  new_backoffice_competitor_path(competition_id: params[:id]) , class: "btn btn-success pull-right", style:"margin-top: -7px" do %>
+      <i class="fa fa-user-plus" style="padding-right: 7px"></i>Cadastrar Competidor
+    <% end %>
+      <h4 class="pull-right"></h4>
+      <br><br>
+  </div>
+
+
+  <div class="well well-sm">
+      <div class="ratings">
+          <h4 class="pull-right"><b>Valor da Inscrição:</b> <%= number_to_currency(@competition.price, precision: 2) %></h4>
+          <p>
+            <h4><b>Título da Competição:</b> <%= @competition.title %></h4>
+          </p>
+      </div>
+  </div>
