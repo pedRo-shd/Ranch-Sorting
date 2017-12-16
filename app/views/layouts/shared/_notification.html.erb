@@ -1,0 +1,15 @@
+<!-- Para usar o Notify.js na posição desejada -->
+<%# if notice %>
+  <%#= javascript_tag "$.notify('#{notice}', 'success',{ globalPosition: 'top center'});" %>
+<%# end %>
+<% if notice %>
+  <%= javascript_tag "$.notify({ message: '#{notice}', icon: 'glyphicon glyphicon-ok-circle' },
+                               { type: 'success', placement: { from: 'top', align: 'center'},
+                                 delay: 400});" %>
+<% end %>
+
+<% if alert %>
+  <%= javascript_tag "$.notify({ message: '#{alert}', icon: 'glyphicon glyphicon-remove-circle' },
+                               { type: 'danger', placement: { from: 'top', align: 'center'},
+                                 delay: 400});" %>
+<% end %>

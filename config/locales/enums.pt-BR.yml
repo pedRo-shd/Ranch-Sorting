@@ -1,0 +1,7 @@
+'pt-BR':
+  enums:
+    admin:
+      role:
+        full_access: Acesso Master
+        restricted_access: Acesso Restrito
+

@@ -1,0 +1,13 @@
+"pt-BR":
+  messages:
+    confirm: Tem certeza?
+    confirm_with: Você deseja realmente excluir (<b>%{item}</b>)?
+    listing: Listando %{model}
+    editing: Editando %{model}
+    new: Novo %{model}
+    errors: ocorreram...
+    created: Item criado com sucesso!
+    updated: Item atualizado com sucesso!
+    destroyed: Item excluido com sucesso!
+    email_delivered: Email enviado com sucesso!
+    email_not_delivered: Erro ao enviar email. Tente novamente
