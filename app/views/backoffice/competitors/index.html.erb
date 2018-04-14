@@ -1,9 +1,10 @@
     <h1 class="page-header">Competições</h1>
 
+<%= params[:competition_id] %>
     <div class="panel panel-default">
         <div class="panel-heading">
             Listando Competições
-            <%= link_to  new_backoffice_competitor_path,
+            <%= link_to  new_backoffice_competitor_path(competition_id: params[:competition_id]),
               class: "btn btn-success pull-right", style:"margin-top: -7px" do %>
                 <i class="fa fa-plus" style="padding-right: 7px"></i>Adicionar Competidor
             <% end %>

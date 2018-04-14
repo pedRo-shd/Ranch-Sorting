@@ -1,4 +1,11 @@
-<h1 class="page-header">Competidor</h1>
+<h1 class="page-header">
+  <% if @competition %>
+    <%= "Competição: #{@competition.title}" %>
+    <p style="font-size: 16px; margin-bottom: 0px; margin-top: 4px;">
+      Valor da inscrição: <%= number_to_currency(@competition.price) %>
+    </p>
+  <% end %>
+</h1>
 
   <% if @competitor.errors.any? %>
    <div class="alert alert-danger alert-dismissable">
@@ -13,26 +20,34 @@
 
 <div class="panel panel-default">
  <div class="panel-heading">
-  <%= action %>
+   Novo Competidor
+  <%#= action %>
  </div>
   <div class="panel-body">
    <div class="col-lg-6">
     <%= form_for([:backoffice, @competitor]) do |f| %>
        <div class="form-group">
-        <label>Título da Competição</label>
+        <label>Nome do Competidor</label>
          <%= f.text_field :name, class:"form-control", placeholder:"Ex: Ilso Dominical" %>
        </div>
          <div class="form-group">
-          <label>Estado da Inscrição</label>
+          <label>Valor Total Pago</label>
+          <div class="input-group">
+             <div class="input-group-addon">R$</div>
+             <%= f.text_field :price, class: "form-control", placeholder:"Ex: 40,00" %>
+          </div>
           <br>
-             <%= f.radio_button :paid, true %> Pagou
-             <%= f.radio_button :paid, false, checked: true %> Não Pagou
-         </div>
+           <div class="form-group">
+            <label>Estado da Inscrição</label>
+            <br>
+               <%= f.radio_button :paid, true %>Pagou
+               <%= f.radio_button :paid, false %>Não Pagou
+           </div>
          <div class="form-group">
-          <label>Cidade da Competição</label>
+          <label>Número de Passadas</label>
            <%= f.text_field :number_races, class:"form-control", placeholder:"Ex: 2" %>
          </div>
-         <%= f.hidden_field :competition_id, value: params[:competition_id] %>
+         <%= f.hidden_field :competition_id, value: @competition.id %>
 
       <button type="submit" class="btn btn-primary">Cadastrar</button>
     <% end %>
