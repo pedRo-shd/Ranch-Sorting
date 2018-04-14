@@ -11,8 +11,9 @@ class Backoffice::CompetitionsController < BackofficeController
 
   def create
     @competition = Competition.new(params_competition)
-    if @competition.save
-      redirect_to backoffice_competition_path(@competition), notice: "A competição (#{@competition.title}) foi cadastrada com sucesso!"
+    if @competition.save!
+      redirect_to backoffice_competition_path(@competition),
+       notice: "A competição #{@competition.title} foi cadastrada com sucesso!"
     else
       render :new
     end
