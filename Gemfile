@@ -100,6 +100,8 @@ group :development, :test do
   gem 'rails-erd'
   #Catches mail and serves it through a dream.
   gem 'mailcatcher'
+  gem 'rspec-rails'
+  gem 'factory_bot_rails'
 end
 
 group :development do
